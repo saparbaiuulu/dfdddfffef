@@ -1,0 +1,83 @@
+#importing libraries 
+from os import system
+import time
+import random
+
+#Functions
+def check(n, m, k):
+    if x[n] + x[m] + x[k] == 713:
+        return 1
+    else:
+        return 0
+
+def randomization1(x):
+    y = random.randrange(0, 6)
+    while y == x:
+        y = random.randrange(0, 6)
+    return int(y)
+
+def randomization2(x, y):
+    z = random.randrange(0, 6)
+    while (z == x) or (z == y):
+        z = random.randrange(0, 6)
+    return int(z)
+
+#all the way
+x = [0, 0, 0, 0, 0, 0, 0]
+
+#giving the places of boxes
+f1 = random.randrange(0, 6)
+f2 = randomization1(f1)
+f3 = randomization2(f1, f2)
+
+x[int(f1)] = 300
+x[int(f2)] = 300
+x[int(f3)] = 113
+
+#asking for places
+all = input("You need to type the number of kilometres from the beginning of way.(0-6 kilometres)\n")
+all = all.split()
+b1 = int(all[0])
+b2 = int(all[1])
+b3 = int(all[2])
+
+time.sleep(0)
+system("cls")
+
+#FINDING
+while check(b1, b2, b3) == 0:
+    
+    time.sleep(0)
+    system("cls")
+
+    print("Unfortunately you did not find right places. Now all boxes moved to new place. Try another coordinates.")
+    
+    #giving new points
+    x[f1] = 0
+    x[f2] = 0
+    x[f3] = 0
+
+    f1 = random.randrange(0, 6)
+    f2 = randomization1(f1)
+    f3 = randomization2(f1, f2)
+
+    x[int(f1)] = 300
+    x[int(f2)] = 300
+    x[int(f3)] = 113
+    
+    time.sleep(4)
+    system("cls")
+
+    #Asking again
+    all = input("You need to type the number of kilometres from the beginning of way.(0-6 kilometres)\n")
+    all = all.split()
+    b1 = int(all[0])
+    b2 = int(all[1])
+    b3 = int(all[2])
+
+time.sleep(0)
+system("cls")
+
+if check(b1, b2, b3) == 1:
+    print("You've find right places.")
+    print(b1, b2, b3)
